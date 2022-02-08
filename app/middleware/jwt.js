@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
+const { jwtSecret } = require('../config/config');
 
 verify = (ctx, next) => {
     let authorization = ctx.request.headers['authorization'];
     if (authorization) {
         let token = authorization.split(' ')[1];
-
-        jwt.verify(token, 'shhhhh', (error, decoded) => {
+        jwt.verify(token, jwtSecret, (error, decoded) => {
             if (error) {
                 ctx.body = {
                     status: -1,
