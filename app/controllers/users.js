@@ -1,8 +1,17 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
-const redis = require('../database/redis');
-const { jwtSecret } = require('../config/config');
 class UserController {
+    async getUsers (ctx) {
+        const users = await User.find({});
+        ctx.body = {
+            status: 1,
+            message: '用户列表获取成功',
+            data: {
+                users: users
+            },
+        };
+    }
+
     async login(ctx) {
         let params = ctx.request.body;
         ctx.verifyParams({
@@ -21,9 +30,9 @@ class UserController {
                 message: '密码错误',
             };
         } else {
-            var token = jwt.sign({ name: user.name }, jwtSecret);
-            redis.set(user.name, token);
-            redis.expire(600);
+            var token = jwt.sign({ name: user.name }, global.jwtSecret);
+            global.redis.set(user.name, token);
+            global.redis.expire(user.name, 600);
             ctx.body = {
                 status: 1,
                 message: '登录成功',
@@ -55,5 +64,6 @@ class UserController {
             }; 
         }
     }
+
 }
 module.exports = new UserController();

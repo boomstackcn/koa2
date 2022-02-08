@@ -5,14 +5,20 @@ const { Schema, model } = mongoose;
 const userSchema = new Schema(
     {
         // __v: { type: Number, select: false },
-        addr: { type: String },
-        expressNum: { type: String },
+        expressAddr: { type: String },
+        expressNum: { type: Number, enum: [0, 1, 2, 3], default: 0 },
         expressStatus: { type: String },
-        expressName: { type: String},
+        expressName: { type: String },
         expressPhoneNum: { type: String },
         prize: { type: String },
         wechart: { type: String, required: true },
-        accountId: { type: Schema.Types.ObjectId, ref: 'Accounts', required: true }
+        openId: { type: String, required: true },
+        accountId: {
+            type: Schema.Types.ObjectId,
+            ref: 'Accounts',
+            required: true,
+        },
+        winGame1: { type: Number, default: 0 },
         // avatar_url: { type: String },
         // gender: {
         //     type: String,
@@ -71,4 +77,4 @@ const userSchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = model('users', userSchema);
+module.exports = model('records', userSchema);
