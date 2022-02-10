@@ -10,7 +10,9 @@ error = async (ctx, next) => {
         }else{
             ctx.status = err.statusCode || err.status || 500;
             ctx.body = {
-                message: err.message
+                status: err.statusCode || err.status || 500,
+                message: err.message,
+                name: err.name
             };
         }
     }

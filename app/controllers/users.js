@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/users');
 class UserController {
+    
     async getUsers (ctx) {
         const users = await User.find({});
         ctx.body = {

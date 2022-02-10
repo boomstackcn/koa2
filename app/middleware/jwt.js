@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const { jwtSecret } = require('../config/config');
 
 verify = async (ctx, next) => {
-    let passUrls = [/^\/users\/login/, /^\/users\/getUsers/];
+    let passUrls = [/^\/users\/login/];
     let isPass = true;
     passUrls.forEach((url) => {
         if (url.test(ctx.url)) {

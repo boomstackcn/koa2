@@ -4,7 +4,6 @@ const cors = require('koa2-cors');
 const koaBody = require('koa-body');
 const parameter = require('koa-parameter');
 const koaStatic = require('koa-static');
-const error = require('koa-json-error');
 
 const database = require('./database/database');
 const routing = require('./routers');
@@ -28,13 +27,6 @@ app.use(cors());
 database.connect();
 //静态资源文件路由
 app.use(koaStatic(path.join(__dirname, 'static')));
-//错误提示
-app.use(
-    error({
-        postFormat: (e, { stack, ...rest }) =>
-            process.env.NODE_ENV === 'production' ? rest : { stack, ...rest },
-    })
-);
 //post格式化以及图片上传
 app.use(
     koaBody({
@@ -45,10 +37,8 @@ app.use(
         },
     })
 );
-
 //验证请求参数
 app.use(parameter(app));
-
 //设置路由
 routing(app);
 app.listen(3000, () => console.log('程序启动在3000端口了'));
