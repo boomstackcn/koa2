@@ -4,7 +4,7 @@
   "description": "koa2 test",
   "main": "app.js",
   "scripts": {
-    "test": "node ./app/app.js"
+    "test": "apidoc -i app -o app/public/apidoc && node ./app/app.js"
   },
   "keywords": [
     "koa2"

@@ -2,6 +2,17 @@ const jwt = require('jsonwebtoken');
 const Record = require('../models/records');
 const service = require('../service/records');
 class RecordController {
+    /**
+     * @api {post} /records/getRecords 获取记录
+     * @apiName getRecords
+     * @apiGroup records
+     *
+     * @apiParamExample {json} 请求示例
+     * {
+     *  "userName": "Eve"
+     * }
+     *
+     */
     async getRecords(ctx) {
         const records = await service.getRecords(ctx);
         ctx.body = {

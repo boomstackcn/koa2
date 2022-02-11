@@ -10,13 +10,13 @@ const routing = require('./routers');
 const tokenVerify = require('./middleware/jwt');
 const customError = require('./middleware/error');
 const redis = require('./database/redis');
-const { jwtSecret } = require('./config/config');
+const config = require('./config/config');
 
 const app = new Koa();
 
 //全局配置
 global.redis = redis;
-global.jwtSecret = jwtSecret;
+global.jwtSecret = config.jwtSecret;
 //全局的错误处理
 app.use(customError);
 //token在redis中的过期检查以及秘钥验证
@@ -41,4 +41,4 @@ app.use(
 app.use(parameter(app));
 //设置路由
 routing(app);
-app.listen(3000, () => console.log('程序启动在3000端口了'));
+app.listen(config.port, () => console.log(`程序启动在${config.port}端口了`));
