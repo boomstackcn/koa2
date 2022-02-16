@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 const Record = require('../models/records');
 const service = require('../service/records');
 class RecordController {
@@ -35,6 +34,13 @@ class RecordController {
         ctx.body = {
             status: 1,
             message: '记录创建成功',
+        };
+    }
+
+    async uploadFile(ctx) {
+        ctx.body = {
+            status: 1,
+            message: '文件上传成功',
         };
     }
 }

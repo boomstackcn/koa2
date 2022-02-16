@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-const { jwtSecret } = require('../config/config');
 
 verify = async (ctx, next) => {
     let passUrls = [/^\/users\/login/];
@@ -16,16 +15,16 @@ verify = async (ctx, next) => {
         if (authorization) {
             let token = authorization;
             try {
-                const user = jwt.verify(token, jwtSecret);
+                const user = jwt.verify(token, ctx.config.jwtSecret);
                 let name = user.name;
                 if (!name) {
                     ctx.throw(401);
                 } else {
-                    let data = await global.redis.get(user.name);
+                    let data = await ctx.redis.get(user.name);
                     if (!data) {
                         ctx.throw(401);
                     }else{
-                        global.redis.expire(user.name, 600)
+                        ctx.redis.expire(user.name, 600)
                     }
                 }
             } catch (error) {
