@@ -1,12 +1,12 @@
-import Router from 'koa-rapid-router';
+import Router from 'koa-rapid-router'
 
-const routerContianer = new Router();
-const router = routerContianer.create('/users');
-import users from '../controllers/users.js';
+const routerContianer = new Router()
+const router = routerContianer.create('/users')
+import users from '../controllers/users.js'
 
-router.post('/login', users.login);
-router.post('/create', users.create);
-router.post('/getUsers', users.getUsers);
-router.post('/changePwd', users.changePwd);
+router.post('/login', users.login)
+router.post('/create', users.create)
+router.post('/getUsers', users.getUsers)
+router.post('/changePwd', users.changePwd)
 
-export default routerContianer;
+export default routerContianer

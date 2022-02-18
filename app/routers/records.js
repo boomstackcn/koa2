@@ -1,15 +1,15 @@
-import Router from 'koa-rapid-router';
-import koaBody from 'koa-body';
+import Router from 'koa-rapid-router'
+import koaBody from 'koa-body'
 
-const routerContianer = new Router();
-import records from '../controllers/records.js';
+const routerContianer = new Router()
+import records from '../controllers/records.js'
 
-const router = routerContianer.create('/records');
-router.post('/getRecords', records.getRecords);
-router.post('/create', records.create);
+const router = routerContianer.create('/records')
+router.post('/getRecords', records.getRecords)
+router.post('/create', records.create)
 router.post(
     '/uploadFile',
-	//上传图片时，重新设置koaBody
+    //上传图片时，重新设置koaBody
     koaBody({
         multipart: true,
         formidable: {
@@ -19,5 +19,5 @@ router.post(
         },
     }),
     records.uploadFile
-);
-export default routerContianer;
+)
+export default routerContianer

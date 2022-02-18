@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const { Schema, model } = mongoose;
+const { Schema, model } = mongoose
 
 const userSchema = new Schema(
     {
@@ -20,6 +20,6 @@ const userSchema = new Schema(
         winGame1: { type: Number, default: 0 },
     },
     { timestamps: true }
-);
+)
 
-export default model('records', userSchema);
+export default model('records', userSchema)

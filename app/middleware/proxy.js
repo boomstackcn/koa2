@@ -1,9 +1,9 @@
 import request from '../utils/request.js'
 
 let proxy = async (ctx, next) => {
-	let reg = RegExp(/\/proxy\/*/)
-	if(ctx.request.href.match(reg)){
-        let url = `http://192.168.1.205:32211/api/Data/Data/QueryDataOnly`;
+    let reg = RegExp(/\/proxy\/*/)
+    if (ctx.request.href.match(reg)) {
+        let url = `http://192.168.1.205:32211/api/Data/Data/QueryDataOnly`
         let res = await request({
             method: 'post',
             url: url,
@@ -21,10 +21,10 @@ let proxy = async (ctx, next) => {
                 },
                 AccountId: 2,
             },
-        });
+        })
         ctx.status = res.statusCode
         ctx.body = res.body
-	}
+    }
     await next()
 }
 export default proxy
