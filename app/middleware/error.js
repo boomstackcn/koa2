@@ -1,4 +1,4 @@
-error = async (ctx, next) => {
+let error = async (ctx, next) => {
     try {
         await next();
     } catch (err) {
@@ -18,4 +18,4 @@ error = async (ctx, next) => {
     }
 };
 
-module.exports = error;
+export default error;

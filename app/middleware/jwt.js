@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from "jsonwebtoken"
 
-verify = async (ctx, next) => {
+let verify = async (ctx, next) => {
     let passUrls = [/^\/users\/login/];
     let isPass = true;
     passUrls.forEach((url) => {
@@ -37,4 +37,4 @@ verify = async (ctx, next) => {
     }
 };
 
-module.exports = verify;
+export default verify;

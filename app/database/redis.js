@@ -1,5 +1,6 @@
-const { redisUrl } = require('../config/config.js');
-const Redis = require('ioredis');
-const redis = new Redis(redisUrl);
+import config from '../config/config.js';
+import Redis from 'ioredis';
 
-module.exports = redis
+const redis = new Redis(config.redisUrl);
+
+export default redis

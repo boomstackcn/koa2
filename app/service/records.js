@@ -1,8 +1,8 @@
-const Record = require('../models/records');
+import Record from '../models/records.js';
 class RecordService {
     async getRecords (ctx) {
         const records = await Record.find({});
         return records
     }
 }
-module.exports = new RecordService();
+export default new RecordService();

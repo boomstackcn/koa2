@@ -1,5 +1,5 @@
-const Record = require('../models/records');
-const service = require('../service/records');
+import Record from '../models/records.js';
+import service from '../service/records.js';
 class RecordController {
     /**
      * @api {post} /records/getRecords 获取记录
@@ -44,4 +44,4 @@ class RecordController {
         };
     }
 }
-module.exports = new RecordController();
+export default new RecordController();

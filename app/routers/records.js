@@ -1,12 +1,12 @@
-const Router = require('koa-rapid-router');
-const koaBody = require('koa-body');
+import Router from 'koa-rapid-router';
+import koaBody from 'koa-body';
 
 const routerContianer = new Router();
-const { getRecords, create, uploadFile } = require('../controllers/records');
+import records from '../controllers/records.js';
 
 const router = routerContianer.create('/records');
-router.post('/getRecords', getRecords);
-router.post('/create', create);
+router.post('/getRecords', records.getRecords);
+router.post('/create', records.create);
 router.post(
     '/uploadFile',
 	//上传图片时，重新设置koaBody
@@ -18,6 +18,6 @@ router.post(
             maxFileSize: 200 * 1024 * 1024,
         },
     }),
-    uploadFile
+    records.uploadFile
 );
-module.exports = routerContianer;
+export default routerContianer;

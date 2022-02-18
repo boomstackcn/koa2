@@ -1,5 +1,6 @@
-const jwt = require('jsonwebtoken');
-const User = require('../models/users');
+
+import jwt from 'jsonwebtoken';
+import User from '../models/users.js';
 class UserController {
     
     async getUsers(ctx) {
@@ -110,4 +111,4 @@ class UserController {
         }
     }
 }
-module.exports = new UserController();
+export default new UserController();

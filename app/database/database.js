@@ -1,13 +1,12 @@
-const mongoose = require("mongoose");
-const { connectionUrl } = require('../config/config.js');
+// const mongoose = require("mongoose");
+import mongoose from 'mongoose';
+import config from '../config/config.js';
 
-module.exports = {
-    connect() {
-        mongoose.connect(
-            connectionUrl,
-            { useUnifiedTopology: true, useNewUrlParser: true },
-            () => console.log('mongodb 连接成功了！')
-        );
-        mongoose.connection.on('error', console.error);
-    },
+export const connect = () => {
+    mongoose.connect(
+        config.connectionUrl,
+        { useUnifiedTopology: true, useNewUrlParser: true },
+        () => console.log('mongodb 连接成功了！')
+    );
+    mongoose.connection.on('error', console.error);
 };
